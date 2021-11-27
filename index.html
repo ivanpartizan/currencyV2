@@ -22,15 +22,18 @@
     <main>
       <div class="container">
         <div class="input">
-          <div class="box">
+          <div class="empty"></div>
+          <div class="box amountBox">
             <label for="">Amount</label><br />
             <input type="number" name="" id="" min="0" />
           </div>
-          <div class="box">
+          <div class="anotherEmpty"></div>
+          <div class="box fromBox">
             <label for="">From</label><br />
             <select name="" id="">
               <option value="AUSSS">AUS Euro</option>
               <option value="AUSSS">EUR Serbian Dinar</option>
+              <option value="AUDD">AUD - Colombian Peso</option>
               <option value="AUSSS">USD Russian ruble</option>
             </select>
           </div>
@@ -38,7 +41,7 @@
             <br />
             <i class="fas fa-exchange-alt"></i>
           </div>
-          <div class="box">
+          <div class="box toBox">
             <label for="">To</label><br />
             <select name="" id="">
               <option value="AUDD">AUD - Colombian Peso</option>
@@ -47,6 +50,8 @@
             </select>
           </div>
         </div>
+
+        <button class="convert">Convert</button>
 
         <div class="output">
           <h1>Result</h1>
