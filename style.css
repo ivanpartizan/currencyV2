@@ -227,11 +227,17 @@ label {
   }
 }
 
-@media only screen and (max-height: 600px) {
+@media only screen and (max-height: 666px) {
   h1 {
     font-size: 26px;
   }
   main {
     margin-top: 65px;
+  }
+  .output h1 {
+    font-size: 20px;
+  }
+  .output p {
+    font-size: 12px;
   }
 }

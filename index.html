@@ -24,30 +24,30 @@
         <div class="input">
           <div class="empty"></div>
           <div class="box amountBox">
-            <label for="">Amount</label><br />
-            <input type="number" name="" id="" min="0" />
+            <label for="amount">Amount</label><br />
+            <input type="number" name="amount" id="amount" min="0" required />
           </div>
           <div class="anotherEmpty"></div>
           <div class="box fromBox">
-            <label for="">From</label><br />
-            <select name="" id=""></select>
+            <label for="fromOptions">From</label><br />
+            <select name="from" id="from"></select>
           </div>
           <div class="iconBox">
             <br />
             <i class="fas fa-exchange-alt"></i>
           </div>
           <div class="box toBox">
-            <label for="">To</label><br />
-            <select name="" id=""></select>
+            <label for="toOptions">To</label><br />
+            <select name="to" id="to"></select>
           </div>
         </div>
 
-        <button class="convert">Convert</button>
+        <button class="convert" id="convert">Convert</button>
 
         <div class="output">
-          <h1>Result</h1>
-          <p>1 COP = 0.0263282 RSD</p>
-          <p>1 RSD = 37.9687 COP</p>
+          <h1 id="result"></h1>
+          <p id="fromTo"></p>
+          <p id="toFrom"></p>
         </div>
 
         <!-- <div class="box">
