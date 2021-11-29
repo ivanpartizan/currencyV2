@@ -36,19 +36,19 @@ async function getCurrencies() {
 getCurrencies();
 
 async function getData() {
-  let fromOptions = document.querySelector("#from");
-  let toOptions = document.querySelector("#to");
-  let fromValue = fromOptions.options[fromOptions.selectedIndex].value;
-  let fromText = fromOptions.options[fromOptions.selectedIndex].text;
-  let toValue = toOptions.options[toOptions.selectedIndex].value;
-  let toText = toOptions.options[toOptions.selectedIndex].text;
-
-  const url = `https://api.exchangerate.host/convert?from=${fromValue}&to=${toValue}&amount=${input.value}`;
-
-  const response = await fetch(url);
-  const data = await response.json();
-
   if (input.value > 0) {
+    let fromOptions = document.querySelector("#from");
+    let toOptions = document.querySelector("#to");
+    let fromValue = fromOptions.options[fromOptions.selectedIndex].value;
+    let fromText = fromOptions.options[fromOptions.selectedIndex].text;
+    let toValue = toOptions.options[toOptions.selectedIndex].value;
+    let toText = toOptions.options[toOptions.selectedIndex].text;
+
+    const url = `https://api.exchangerate.host/convert?from=${fromValue}&to=${toValue}&amount=${input.value}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
     resultHeading.innerText = `${input.value} ${fromText.slice(6)}s =
     ${data.result} ${toText.slice(6)}s`;
 
@@ -60,26 +60,30 @@ async function getData() {
 }
 
 async function getSwapData() {
-  let fromOptions = document.querySelector("#from");
-  let toOptions = document.querySelector("#to");
-  let fromValue = fromOptions.options[fromOptions.selectedIndex].value;
-  let fromText = fromOptions.options[fromOptions.selectedIndex].text;
-  let toValue = toOptions.options[toOptions.selectedIndex].value;
-  let toText = toOptions.options[toOptions.selectedIndex].text;
+  if (input.value > 0) {
+    let fromOptions = document.querySelector("#from");
+    let toOptions = document.querySelector("#to");
+    let fromValue = fromOptions.options[fromOptions.selectedIndex].value;
+    let fromText = fromOptions.options[fromOptions.selectedIndex].text;
+    let toValue = toOptions.options[toOptions.selectedIndex].value;
+    let toText = toOptions.options[toOptions.selectedIndex].text;
 
-  [fromValue, toValue] = [toValue, fromValue];
-  [fromText, toText] = [toText, fromText];
+    [fromValue, toValue] = [toValue, fromValue];
+    [fromText, toText] = [toText, fromText];
 
-  const url = `https://api.exchangerate.host/convert?from=${fromValue}&to=${toValue}&amount=${input.value}`;
+    const url = `https://api.exchangerate.host/convert?from=${fromValue}&to=${toValue}&amount=${input.value}`;
 
-  const response = await fetch(url);
-  const data = await response.json();
+    const response = await fetch(url);
+    const data = await response.json();
 
-  resultHeading.innerText = `${input.value} ${fromText.slice(6)}s =
+    resultHeading.innerText = `${input.value} ${fromText.slice(6)}s =
 ${data.result} ${toText.slice(6)}s`;
 
-  fromToText.innerText = `1 ${fromValue} = ${data.info.rate} ${toValue}`;
-  toFromText.innerText = `1 ${toValue} = ${1 / data.info.rate} ${fromValue}`;
+    fromToText.innerText = `1 ${fromValue} = ${data.info.rate} ${toValue}`;
+    toFromText.innerText = `1 ${toValue} = ${1 / data.info.rate} ${fromValue}`;
+  } else {
+    alert("Please, enter a valid amount");
+  }
 }
 
 button.addEventListener("click", getData);
