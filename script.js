@@ -48,11 +48,15 @@ async function getData() {
   const response = await fetch(url);
   const data = await response.json();
 
-  resultHeading.innerText = `${input.value} ${fromText.slice(6)}s =
-${data.result} ${toText.slice(6)}s`;
+  if (input.value > 0) {
+    resultHeading.innerText = `${input.value} ${fromText.slice(6)}s =
+    ${data.result} ${toText.slice(6)}s`;
 
-  fromToText.innerText = `1 ${fromValue} = ${data.info.rate} ${toValue}`;
-  toFromText.innerText = `1 ${toValue} = ${1 / data.info.rate} ${fromValue}`;
+    fromToText.innerText = `1 ${fromValue} = ${data.info.rate} ${toValue}`;
+    toFromText.innerText = `1 ${toValue} = ${1 / data.info.rate} ${fromValue}`;
+  } else {
+    alert("Please, enter a valid amount");
+  }
 }
 
 async function getSwapData() {
