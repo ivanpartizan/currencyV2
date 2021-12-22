@@ -25,7 +25,7 @@ async function getCurrencies() {
 
 getCurrencies();
 
-async function getData(rev = "false") {
+async function getData(reverse = "false") {
   if (input.value > 0) {
     let fromOptions = document.querySelector("#from");
     let toOptions = document.querySelector("#to");
@@ -34,7 +34,7 @@ async function getData(rev = "false") {
     let toValue = toOptions.options[toOptions.selectedIndex].value;
     let toText = toOptions.options[toOptions.selectedIndex].text;
 
-    if (rev === "swap") {
+    if (reverse === "swap") {
       [fromValue, toValue] = [toValue, fromValue];
       [fromText, toText] = [toText, fromText];
     }
@@ -50,7 +50,14 @@ async function getData(rev = "false") {
     fromToText.innerText = `1 ${fromValue} = ${data.info.rate} ${toValue}`;
     toFromText.innerText = `1 ${toValue} = ${1 / data.info.rate} ${fromValue}`;
   } else {
-    alert("Please, enter a valid amount");
+    resultHeading.innerHTML = "Please, enter a valid amount";
+    resultHeading.style.fontSize = "16px";
+    fromToText.innerHTML = "";
+    toFromText.innerHTML = "";
+    setTimeout(function () {
+      resultHeading.innerHTML = "";
+      resultHeading.style.fontSize = "32px";
+    }, 2000);
   }
 }
 
