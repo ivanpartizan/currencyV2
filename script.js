@@ -35,8 +35,12 @@ async function getData(reverse = "false") {
     let toText = toOptions.options[toOptions.selectedIndex].text;
 
     if (reverse === "swap") {
-      [fromValue, toValue] = [toValue, fromValue];
-      [fromText, toText] = [toText, fromText];
+      [toOptions.value, fromOptions.value] = [
+        fromOptions.value,
+        toOptions.value,
+      ];
+      getData();
+      return;
     }
 
     const url = `https://api.exchangerate.host/convert?from=${fromValue}&to=${toValue}&amount=${input.value}`;
