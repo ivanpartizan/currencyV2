@@ -219,3 +219,22 @@ label {
     font-size: 12px;
   }
 }
+
+select::-webkit-scrollbar {
+  width: 14px;
+}
+
+select::-webkit-scrollbar-track {
+  border: none;
+  background-color: #fff;
+}
+
+select::-webkit-scrollbar-thumb {
+  border: none;
+  background-color: #0f1115;
+}
+
+select option {
+  color: #fff;
+  background: #0f1115;
+}
