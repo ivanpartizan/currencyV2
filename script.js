@@ -12,7 +12,7 @@ const select = document.querySelectorAll("select");
 async function getCurrencies() {
   const response = await fetch(currencies);
   const data = await response.json();
-
+  console.log(data);
   const keys = Object.keys(data);
   const values = Object.values(data);
 
@@ -24,6 +24,8 @@ async function getCurrencies() {
 }
 
 getCurrencies();
+
+const apiKey = "bf762ef2bf54e3c071fa8668";
 
 async function getData(reverse = "false") {
   if (input.value > 0) {
@@ -43,16 +45,21 @@ async function getData(reverse = "false") {
       return;
     }
 
-    const url = `https://api.exchangerate.host/convert?from=${fromValue}&to=${toValue}&amount=${input.value}`;
+    const url = `https://v6.exchangerate-api.com/v6/bf762ef2bf54e3c071fa8668/latest/${fromValue}`;
 
     const response = await fetch(url);
+    console.log(response);
     const data = await response.json();
-
+    console.log(data);
+    console.log(`${data.conversion_rates[toValue] * input.value}`);
+    console.log(fromText, toText);
     resultHeading.innerText = `${input.value} ${fromText.slice(6)}s =
-    ${data.result} ${toText.slice(6)}s`;
+    ${data.conversion_rates[toValue] * input.value} ${toText.slice(6)}s`;
 
-    fromToText.innerText = `1 ${fromValue} = ${data.info.rate} ${toValue}`;
-    toFromText.innerText = `1 ${toValue} = ${1 / data.info.rate} ${fromValue}`;
+    fromToText.innerText = `1 ${fromValue} = ${data.conversion_rates[toValue]} ${toValue}`;
+    toFromText.innerText = `1 ${toValue} = ${
+      1 / data.conversion_rates[toValue]
+    } ${fromValue}`;
   } else {
     resultHeading.innerHTML = "Please, enter a valid amount";
     resultHeading.style.fontSize = "16px";
